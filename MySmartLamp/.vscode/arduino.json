@@ -1,0 +1,6 @@
+{
+    "port": "/dev/ttyUSB0",
+    "board": "LinkIt:linkit_rtos:linkit_7697",
+    "programmer": "LinkIt:linkitfirmware",
+    "sketch": "MySmartLimp.ino"
+}

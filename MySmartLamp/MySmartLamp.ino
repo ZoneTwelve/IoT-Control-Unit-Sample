@@ -1,9 +1,10 @@
 #include <LWiFi.h>
+#include "web_server.h"
 #include "led_ctrl_async.h"
 const int lamp_pin = 10;
 const int ctrl_pin =  6;
-char ssid[] = "SSID";       // your network SSID (name)
-char pass[] = "PASSWORD";   // your network password
+char ssid[] = "Secure";      // your network SSID (name)
+char pass[] = "zonetwelvepwd";   // your network password
 int status = WL_IDLE_STATUS;
 int pattern[] = { 200, 500, 1000, '\0' };
 
@@ -63,6 +64,18 @@ void loop() {
     btnPress( );
   }
   btnPress( );
+
+
+  if (WiFi.status() == WL_CONNECTED){
+      int connected = client.connected();
+      if (!connected){
+        Serial.println("Reconnect to server");
+        client.connect(HOST, PORT);
+        client.println("CONN Lamp-V1-Linkit\n");
+        delay( 50 );
+      }
+
+  }
 }
 
 int execute(String cmd){
